@@ -3,6 +3,11 @@ VirtualBox-5.1.22
 虚拟机系统 centos7.3
 账号 root
 密码 123456
+
+修改系统时间
+timedatectl set-local-rtc 1 # 将硬件时钟调整为与本地时钟一致, 0 为设置为 UTC 时间
+timedatectl set-timezone Asia/Shanghai # 设置系统时区为上海
+重启即可
 #### 包括软件
 * jdk 1.8.0_111
 * nginx 1.11.7

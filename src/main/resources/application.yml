@@ -1,0 +1,26 @@
+spring:
+  jackson:
+    #设置时区和controller返回出来的时间数据格式
+      time-zone: GMT + 8
+      date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    #虚拟机每次重启都会更新IP
+    url: jdbc:mysql://192.168.3.71/sell?characterEncoding=utf-8&useSSL=false
+  jpa:
+    show-sql: true
+server:
+  servlet:
+    context-path: /sell
+#logging:
+#  #日志格式
+#  pattern:
+#    console: "%d - %msg%n"
+#  #日志路径file定义路径名称，注意路径要用左斜线
+#  # path: D:/IdeaWorkspace/sell/src/main/resources/logs
+#  file: D:/IdeaWorkspace/sell/src/main/resources/logs/sell.log
+#  #设置日志的级别,可以定义具体类的日志级别
+#  level:
+#    com.sell.LoggerTest: debug

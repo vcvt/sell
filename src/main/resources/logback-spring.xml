@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--配置Logback日志，Appender是日志配置项-->
+<configuration>
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--具体日志格式 %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -%msg%n-->
+            <pattern>
+               <!-- %d{YYYY-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n -->
+                %d - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+    <!--日志文件设置-->
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--过滤INFO日志,禁止ERROR日志，拒绝ERROR日志-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略,按时间输出日志-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>
+                D:/IdeaWorkspace/sell/src/main/resources/logs/info.%d.log
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--过滤ERROR日志-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略,按时间输出日志-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>
+                D:/IdeaWorkspace/sell/src/main/resources/logs/error.%d.log
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <!--日志控制范围,指定在root下面使用appender配置-->
+    <root level="info">
+        <!--控制台日志-->
+        <appender-ref ref="consoleLog"/>
+        <!--日志文件日志-->
+        <appender-ref ref="fileInfoLog"/>
+        <appender-ref ref="fileErrorLog"/>
+    </root>
+</configuration>
