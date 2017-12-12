@@ -1,4 +1,15 @@
 spring:
+  #不输出Banner, off加双引号
+  main:
+    banner-mode: "off"
+  #热部署需要设置IDEA compile自动编译，并且ctrl + shift + alt + /,选择Registry,勾上 Compiler autoMake allow when app running
+  devtools:
+    restart:
+      #排除不需要进行更新的文件
+      exclude:
+      enabled: true
+      #改变triggers.txt会触发热部署
+      trigger-file: triggers.txt
   jackson:
     #设置时区和controller返回出来的时间数据格式
       time-zone: GMT + 8
